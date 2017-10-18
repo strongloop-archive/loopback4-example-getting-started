@@ -18,3 +18,17 @@ certain technologies, languages and concepts.
 - [npm](https://www.npmjs.com/)
 - [REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
 - Using Git
+
+## Setup
+1. Clone this repository if you haven't already:
+```
+git clone https://github.com/strongloop/loopback4-example-getting-started`
+```
+1. Switch to the directory and install the app's dependencies:
+```
+cd loopback4-example-getting-started && npm install
+```
+1. Run it!
+```
+npm start
+```
