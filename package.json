@@ -1,0 +1,30 @@
+{
+  "name": "loopback4-example-getting-started",
+  "version": "1.0.0",
+  "description": "An application and tutorial on how to build with LoopBack 4.",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "start": "tsc && node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strongloop/loopback4-example-getting-started.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/strongloop/loopback4-example-getting-started/issues"
+  },
+  "homepage":
+    "https://github.com/strongloop/loopback4-example-getting-started#readme",
+  "dependencies": {
+    "@loopback/core": "^4.0.0-alpha.16",
+    "@loopback/rest": "^4.0.0-alpha.3"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.34",
+    "typescript": "^2.5.2"
+  }
+}
