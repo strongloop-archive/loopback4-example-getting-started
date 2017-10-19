@@ -1,0 +1,7 @@
+{
+  "ds": {
+    "name": "ds",
+    "connector": "memory",
+    "file": "./data/db.json"
+  }
+}
