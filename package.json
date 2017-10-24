@@ -4,27 +4,37 @@
   "description": "An application and tutorial on how to build with LoopBack 4.",
   "main": "dist/index.js",
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "scripts": {
-    "start": "tsc && node ."
+    "start": "tsc && node .",
+    "build": "tsc",
+    "test": "tsc && mocha --recursive ./dist/test/**/*.test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/strongloop/loopback4-example-getting-started.git"
+    "url":
+      "git+https://github.com/strongloop/loopback4-example-getting-started.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/strongloop/loopback4-example-getting-started/issues"
+    "url":
+      "https://github.com/strongloop/loopback4-example-getting-started/issues"
   },
-  "homepage": "https://github.com/strongloop/loopback4-example-getting-started#readme",
+  "homepage":
+    "https://github.com/strongloop/loopback4-example-getting-started#readme",
   "dependencies": {
     "@loopback/core": "^4.0.0-alpha.16",
     "@loopback/repository": "^4.0.0-alpha.10",
-    "@loopback/rest": "^4.0.0-alpha.3"
+    "@loopback/rest": "^4.0.0-alpha.3",
+    "@types/sinon": "^2.3.6",
+    "sinon": "^4.0.1"
   },
   "devDependencies": {
+    "@loopback/testlab": "^4.0.0-alpha.9",
+    "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.34",
+    "mocha": "^4.0.1",
     "typescript": "^2.5.2"
   }
 }

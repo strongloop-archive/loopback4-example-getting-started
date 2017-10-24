@@ -7,7 +7,7 @@
     "noUnusedLocals": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2017",
+    "target": "es6",
     "outDir": "dist",
     "sourceMap": true
   }
