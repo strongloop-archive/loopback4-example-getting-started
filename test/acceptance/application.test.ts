@@ -1,6 +1,7 @@
 import { createClientForHandler, supertest, expect } from '@loopback/testlab';
 import { RestServer } from '@loopback/rest';
 import { TodoApplication } from '../../src/application';
+import { Todo } from '../../src/models';
 
 describe('Controllers', () => {
   let app: TodoApplication;
@@ -165,7 +166,7 @@ describe('Controllers', () => {
     const todoBody = {
       title: 'go shopping'
     };
-    let todo: any;
+    let todo: Todo;
 
     describe('createTodoItem', () => {
       it('successfully creates a todo item', async () => {
@@ -216,27 +217,28 @@ describe('Controllers', () => {
           .expect(404);
       });
     });
+
     describe('getTodoItems', () => {
-      let todo: any;
-      let flux: any;
-      let plutonium: any;
+      let shopping: Todo;
+      let flux: Todo;
+      let plutonium: Todo;
 
       before(async () => {
-        todo = (await client.post('/todo').send({
+        shopping = (await client.post('/todo').send({
           title: 'go shopping'
         })).body;
         // Setup some items
-        flux = (await client.post(`/todo/${todo.id}/items`).send({
+        flux = (await client.post(`/todo/${shopping.id}/items`).send({
           title: 'flux capacitor'
         })).body;
-        plutonium = (await client.post(`/todo/${todo.id}/items`).send({
+        plutonium = (await client.post(`/todo/${shopping.id}/items`).send({
           title: 'plutonium'
         })).body;
       });
 
       it('returns all todo items on a todo', async () => {
         const result = (await client
-          .get(`/todo/${todo.id}/items`)
+          .get(`/todo/${shopping.id}/items`)
           .send()
           .expect(200)).body;
         expect(result.length).to.eql(2);
@@ -245,20 +247,20 @@ describe('Controllers', () => {
       });
     });
     describe('replaceTodoItem', () => {
-      let todo: any;
-      let flux: any;
+      let shopping: Todo;
+      let flux: Todo;
       before(async () => {
-        todo = (await client.post('/todo').send({
+        shopping = (await client.post('/todo').send({
           title: 'go shopping'
         })).body;
-        flux = (await client.post(`/todo/${todo.id}/items`).send({
+        flux = (await client.post(`/todo/${shopping.id}/items`).send({
           title: 'flux capacitor'
         })).body;
       });
 
       it('successfully replaces a todo item if it exists', async () => {
         await client
-          .put(`/todo/${todo.id}/items/${flux.id}`)
+          .put(`/todo/${shopping.id}/items/${flux.id}`)
           .send({
             title: 'samoflange'
           })
@@ -267,7 +269,7 @@ describe('Controllers', () => {
 
       it('returns 404 if a todo item does not exist', async () => {
         await client
-          .put(`/todo/${todo.id}/items/999999`)
+          .put(`/todo/${shopping.id}/items/999999`)
           .send({
             title: 'whoops'
           })
@@ -275,20 +277,20 @@ describe('Controllers', () => {
       });
     });
     describe('updateTodoItem', () => {
-      let todo: any;
-      let flux: any;
+      let shopping: Todo;
+      let flux: Todo;
 
       before(async () => {
-        todo = (await client.post('/todo').send({
+        shopping = (await client.post('/todo').send({
           title: 'go shopping'
         })).body;
-        flux = (await client.post(`/todo/${todo.id}/items`).send({
+        flux = (await client.post(`/todo/${shopping.id}/items`).send({
           title: 'flux capacitor'
         })).body;
       });
 
       it('successfully updates todo item if it exists', async () => {
-        const path = `/todo/${todo.id}/items/${flux.id}`;
+        const path = `/todo/${shopping.id}/items/${flux.id}`;
         await client
           .patch(path)
           .send({
@@ -308,7 +310,7 @@ describe('Controllers', () => {
 
       it('returns 404 if a todo item does not exist', async () => {
         await client
-          .patch(`/todo/${todo.id}/items/999999`)
+          .patch(`/todo/${shopping.id}/items/999999`)
           .send({
             title: 'whoops'
           })
@@ -316,49 +318,48 @@ describe('Controllers', () => {
       });
     });
     describe('deleteTodoItem', () => {
-      let todo: any;
-      let flux: any;
+      let shopping: Todo;
+      let flux: Todo;
       before(async () => {
-        todo = (await client.post('/todo').send({
+        shopping = (await client.post('/todo').send({
           title: 'go shopping'
         })).body;
-        flux = (await client.post(`/todo/${todo.id}/items`).send({
+        flux = (await client.post(`/todo/${shopping.id}/items`).send({
           title: 'flux capacitor'
         })).body;
       });
 
       it('deletes an item if it exists', async () => {
         await client
-          .del(`/todo/${todo.id}/items/${flux.id}`)
+          .del(`/todo/${shopping.id}/items/${flux.id}`)
           .send()
           .expect(200);
       });
 
       it('returns 404 if no match is found', async () => {
         await client
-          .del(`/todo/${todo.id}/items/999999`)
+          .del(`/todo/${shopping.id}/items/999999`)
           .send()
           .expect(404);
       });
     });
 
     describe('deleteAll', () => {
-      let todo: any;
-      let flux: any;
-      let plutonium: any;
+      let shopping: Todo;
+      
       before(async () => {
-        todo = (await client.post('/todo').send({
+        shopping = (await client.post('/todo').send({
           title: 'go shopping'
         })).body;
-        flux = (await client.post(`/todo/${todo.id}/items`).send({
+        await client.post(`/todo/${shopping.id}/items`).send({
           title: 'flux capacitor'
-        })).body;
-        plutonium = (await client.post(`/todo/${todo.id}/items`).send({
+        });
+        await client.post(`/todo/${shopping.id}/items`).send({
           title: 'plutonium'
-        })).body;
+        });
       });
       it('deletes all items if they exist', async () => {
-        const path = `/todo/${todo.id}/items`;
+        const path = `/todo/${shopping.id}/items`;
         await client
           .del(path)
           .send()

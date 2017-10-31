@@ -65,9 +65,8 @@ export class TodoItemController {
   @param.path.number('id')
   async updateTodoItem(x: number, todoItem: TodoItem, id: number) {
     // We don't need the todoId, but it's for consistency.
-    let item;
     try {
-      item = await this.todoItemRepo.findById(id);
+      await this.todoItemRepo.findById(id);
     } catch (err) {
       return Promise.reject(
         new HttpErrors.NotFound(`No todo item was found with id ${id}`)
@@ -80,9 +79,8 @@ export class TodoItemController {
   @param.path.number('x')
   @param.path.number('id')
   async deleteTodoItem(x: number, id: number) {
-    let item;
     try {
-      item = await this.todoItemRepo.findById(id);
+      await this.todoItemRepo.findById(id);
     } catch (err) {
       return Promise.reject(
         new HttpErrors.NotFound(`No todo item was found with id ${id}`)
