@@ -63,9 +63,8 @@ export class TodoController {
   @param.path.number('id')
   @param.body('todo', TodoSchema)
   async updateTodo(id: number, todo: Todo): Promise<boolean> {
-    let item;
     try {
-      item = await this.todoRepo.findById(id);
+      await this.todoRepo.findById(id);
       return await this.todoRepo.updateById(id, todo);
     } catch (err) {
       return Promise.reject(
