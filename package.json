@@ -9,7 +9,7 @@
   "scripts": {
     "start": "npm run build && node .",
     "build": "lb-tsc && lb-tslint",
-    "test": "npm run build && mocha --recursive ./dist/test/**/*.test.js"
+    "test": "npm run build && mocha \"./dist/test/**/*.test.js\""
   },
   "repository": {
     "type": "git",
