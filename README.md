@@ -22,7 +22,7 @@ certain technologies, languages and concepts.
 ## Setup
 1. Clone this repository if you haven't already:
 ```
-git clone https://github.com/strongloop/loopback4-example-getting-started`
+git clone https://github.com/strongloop/loopback4-example-getting-started
 ```
 1. Switch to the directory and install the app's dependencies:
 ```
