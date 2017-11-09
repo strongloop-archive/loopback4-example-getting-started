@@ -47,7 +47,8 @@ describe('Application', () => {
     const todo = await givenTodoInstance();
     const updatedTodo = givenTodo({
       title: 'DO SOMETHING AWESOME',
-      desc: 'It has to be something ridiculous'
+      desc: 'It has to be something ridiculous',
+      isComplete: true
     });
     await client
       .put(`/todo/${todo.id}`)
@@ -60,7 +61,8 @@ describe('Application', () => {
   it('updates the todo by ID ', async () => {
     const todo = await givenTodoInstance();
     const updatedTodo = givenTodo({
-      title: 'DO SOMETHING AWESOME'
+      title: 'DO SOMETHING AWESOME',
+      isComplete: true
     });
     await client
       .patch(`/todo/${todo.id}`)
