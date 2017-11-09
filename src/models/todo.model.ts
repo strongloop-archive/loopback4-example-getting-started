@@ -1,5 +1,5 @@
-import { Entity, property, model } from '@loopback/repository';
-import { SchemaObject } from '@loopback/openapi-spec';
+import {Entity, property, model} from '@loopback/repository';
+import {SchemaObject} from '@loopback/openapi-spec';
 
 @model()
 export class Todo extends Entity {
@@ -23,7 +23,7 @@ export class Todo extends Entity {
   @property({
     type: 'boolean'
   })
-  isComplete: boolean = false;
+  isComplete: boolean;
 
   getId() {
     return this.id;
