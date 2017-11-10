@@ -114,7 +114,10 @@ describe('Application', () => {
   }
 
   async function givenTodoRepository() {
-    todoRepo = (await app.get('repositories.todo')) as TodoRepository;
+    // TODO(bajtos) enhance RepositoryMixin to provide repository getter
+    // Example usage:
+    //  todoRepo = await app.getRepository<TodoRepository>(TodoRepository.name)
+    todoRepo = (await app.get('repositories.TodoRepository')) as TodoRepository;
   }
 
   async function givenTodoInstance(todo?: Partial<Todo>) {
