@@ -30,6 +30,9 @@ export class Todo extends Entity {
   }
 }
 
+// TODO(bajtos) The schema should be generated from model definition
+// See https://github.com/strongloop/loopback-next/issues/700
+//   export const TodoSchema = createSchemaFromModel(Todo);
 export const TodoSchema: SchemaObject = {
   title: 'todoItem',
   properties: {
@@ -49,5 +52,6 @@ export const TodoSchema: SchemaObject = {
       type: 'boolean',
       description: 'Whether or not the Todo entry is complete.'
     }
-  }
+  },
+  required: ['title'],
 };
