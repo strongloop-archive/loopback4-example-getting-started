@@ -117,6 +117,7 @@ describe('Application', () => {
     // TODO(bajtos) enhance RepositoryMixin to provide repository getter
     // Example usage:
     //  todoRepo = await app.getRepository<TodoRepository>(TodoRepository.name)
+    // See https://github.com/strongloop/loopback-next/issues/745
     todoRepo = (await app.get('repositories.TodoRepository')) as TodoRepository;
   }
 

@@ -12,6 +12,7 @@ export class TodoApplication extends RepositoryMixin(Application) {
     // of the app (what components are mounted, etc.) The config object should
     // be used only to configure what ports the app is listening on,
     // which database to connect to, etc.
+    // See https://github.com/strongloop/loopback-next/issues/742
 
     // Allow options to replace the defined components array, if desired.
     options = Object.assign(
@@ -29,12 +30,14 @@ export class TodoApplication extends RepositoryMixin(Application) {
   // Helper functions (just to keep things organized)
   setupRepositories() {
     // TODO(bajtos) Automate datasource and repo registration via @loopback/boot
+    // See https://github.com/strongloop/loopback-next/issues/441
     const datasource =
       this.options && this.options.datasource
         ? new DataSourceConstructor(this.options.datasource)
         : db;
     // TODO(bajtos) use app.dataSource() from @loopback/repository mixin
     // (app.dataSource() is not implemented there yet)
+    // See https://github.com/strongloop/loopback-next/issues/743
     this.bind('datasource').to(datasource);
     this.repository(TodoRepository);
   }
