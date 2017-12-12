@@ -1,9 +1,8 @@
 import * as path from 'path';
-import * as fs from 'fs';
 import { DataSourceConstructor } from '@loopback/repository';
 
 const dsConfigPath = path.resolve('config', 'datasources.json');
-const config = JSON.parse(fs.readFileSync(dsConfigPath, 'utf8'));
+const config = require(dsConfigPath);
 
 // TODO(bajtos) Ideally, datasources should be created by @loopback/boot
 // and registered with the app for dependency injection.
