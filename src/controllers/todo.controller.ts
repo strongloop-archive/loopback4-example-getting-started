@@ -16,8 +16,7 @@ export class TodoController {
     if (!todo.title) {
       return Promise.reject(new HttpErrors.BadRequest('title is required'));
     }
-    const result = await this.todoRepo.create(todo);
-    return result;
+    return await this.todoRepo.create(todo);
   }
 
   @get('/todo/{id}')
