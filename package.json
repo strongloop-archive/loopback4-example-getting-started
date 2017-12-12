@@ -2,7 +2,7 @@
   "name": "loopback4-example-getting-started",
   "version": "1.0.0",
   "description": "An application and tutorial on how to build with LoopBack 4.",
-  "main": "dist/index.js",
+  "main": "index.js",
   "engines": {
     "node": ">=8"
   },
